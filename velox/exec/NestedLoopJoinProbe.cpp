@@ -477,7 +477,7 @@ RowVectorPtr NestedLoopJoinProbe::genCrossProductSingleBuildVector(
     probeRowCount_ = 1;
   } else {
     probeRowCount_ = std::min(
-        (vector_size_t)outputBatchSize_ / buildRowCount,
+        static_cast<vector_size_t>(outputBatchSize_ / buildRowCount),
         input_->size() - probeRow_);
   }
   size_t numOutputRows = probeRowCount_ * buildRowCount;
